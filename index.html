@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="madlibs.css">
+	<title>Mad Libs</title>
+	<link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
+</head>
+<body>
+	<h1>If I were president...</h1>
+	<div class="form-style-5">
+	<form id="form">
+		<fieldset>
+		<label for="noun">Noun:</label>
+		<input type="text" id="noun"> 
+
+		<label for="adjective">Adjective:</label>
+		<input type="text" id="adjective">
+
+		<label for="adjective2">Adjtive that ends in er:</label>
+		<input type="text" id="adjective2">
+
+		<label for="noun2">Noun:</label>
+		<input type="text" id="noun2">
+
+		<label for="noun22">Noun:</label>
+		<input type="text" id="noun22">
+
+		<label for="noun3">Plural noun:</label>
+		<input type="text" id="noun3">
+
+		<label for="day">Day of the week:</label>
+		<input type="text" id="day">
+
+		<label for="dessert">Type of dessert</label>
+		<input type="text" id="dessert">
+
+		<label for="number">Number between 1-7:</label>
+		<input type="text" id="number">
+
+		<label for="verb">Verb ending in ing:</label>
+		<input type="text" id="verb">
+
+		<label for="name">Name:</label>
+		<input type="text" id="name">
+</fieldset>
+		<input type="button" onclick="showStory()" value="May the odds be ever in your favour!">
+
+		<!-- <button type="button" onclick="showStory()">May the odds be ever in your favour!</button> -->
+
+	</form>
+</div>
+<div id="output"></div>
+<h1>Past stories</h1>
+<div id="archives"></div>
+	
+<script>
+	const output = document.getElementById('output');
+	output.style.display = 'none';
+
+	for (var i = 0; i < localStorage.length; i++) {
+		console.log("hello");
+		const archives = document.getElementById('archives');
+		const archive = localStorage.getItem(localStorage.key(i));	
+	archives.insertAdjacentHTML('beforeend',`<p> ${archive} </p>` );
+	}
+
+	
+	function showStory() {
+		const form = document.querySelector('.form-style-5');
+		const output = document.getElementById('output');
+		const noun = document.getElementById('noun');
+		const adjective = document.getElementById('adjective');
+		const adjective2 = document.getElementById('adjective2');
+		const noun2 = document.getElementById('noun2');
+		const noun22 = document.getElementById('noun22');
+		const noun3 = document.getElementById('noun3');
+		const day = document.getElementById('day');
+		const dessert = document.getElementById('dessert');
+		const number = document.getElementById('number');
+		const verb = document.getElementById('verb');
+		const name = document.getElementById('name');
+
+
+		const story = `<p>Ladies and Gentlemen, and members of the ${noun.value}, it is my pleasure to speak to you today. Ours is a ${adjective.value} country and I will work hard to make it even ${adjective2.value}. If you elect me as President, I promise to put a/an ${noun2.value} in every ${noun22.value} and two ${noun3.value} in every garage. I will set aside each ${day.value} as ${dessert.value} Day and I will lower taxes forever. I propose a ${number.value} day school week and propose ${verb.value} be a required class in school. I hope to have your vote this fall. I'm ${name.value} and I approve of this message.</p>`
+
+	
+		output.innerHTML = story;
+		output.insertAdjacentHTML('beforeend',`<a href="index.html"class="button">rerun</a>` );
+		form.style.display = 'none';
+		output.style.display = '';
+		
+
+
+		console.log(window.localStorage);
+		localStorage.setItem(Date.now(), story)
+
+	};
+</script>
+</body>
+</html>
